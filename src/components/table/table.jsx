@@ -1,9 +1,8 @@
 import { useState } from 'react';
 import SortIcon from '@mui/icons-material/Sort';
 import CircleIcon from '@mui/icons-material/Circle';
-import getIntentInfo from '../../utils/intentMap';
+import Intent from '../../utils/intentMap';
 import getKdInfo from '../../utils/kdMap';
-import Intent from "./intent";
 
 const Table = ({data, setCheckedData}) => {
   const [isChecked, setIsChecked] = useState(false);
@@ -38,7 +37,7 @@ const Table = ({data, setCheckedData}) => {
             </td>
             <td className="pl-1 w-[25%] whitespace-nowrap">{item[0]}</td>
             <td className="pl-2 w-[10%] whitespace-nowrap">
-                {getIntentInfo(item[2]) === null ? <span>N/A</span> : <Intent intentInfo = {getIntentInfo(item[2])} />}
+                <Intent intent = {item[2]} length="1" />
             </td>
             <td className="pl-2 w-[10%] whitespace-nowrap">{item[1]}</td>
             <td className="pl-2 w-[10%] whitespace-nowrap">

@@ -1,5 +1,6 @@
 import React from 'react'
 import getKdInfo from '../../utils/kdMap';
+import Intent from "../../utils/intentMap";
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 
@@ -44,20 +45,22 @@ const widget = ({checkedData, country}) => {
       {/* right */}
       <div className="w-6/12">
         {/* intent */}
-        <div className="m-2 p-4 bg-white border border-gray-200 rounded-xl">
+        <div className="m-2 p-4 bg-white border border-gray-200 rounded-xl text-xs">
             <span className="text-gray-700 text-sm">Intent</span>
+            <Intent intent = {checkedData[2]} length = "0" /> 
         </div>
         <div className="m-2 p-4 bg-white border border-gray-200 rounded-xl">
             <span className="text-gray-700 text-sm">Results</span>
+            <h1 className="font-extrabold">{checkedData[5]/1000000}M</h1>
         </div>
         <div className="m-2 p-4 bg-white border border-gray-200 rounded-xl flex justify-around">
             <div className="flex flex-col -ml-8">
                 <span className="text-gray-700 text-sm">CPC</span>
-                <span className="text-gray-700 text-sm">akjf</span>
+                <h1 className="font-extrabold">${checkedData[3]}</h1>
             </div>
             <div className="flex flex-col ml-4">
                 <span className="text-gray-700 text-sm">Com.</span>
-                <span className="text-gray-700 text-sm">aldj</span>
+                <h1 className="font-extrabold">${checkedData[4]}</h1>
             </div>
         </div>
       </div>
