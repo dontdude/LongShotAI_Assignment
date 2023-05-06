@@ -14,7 +14,7 @@ import Logo from '../../data/logo.svg';
 
 function Sidebar() {
   return (
-    <div className="flex flex-col justify-between h-screen w-44 bg-white border border-gray-300">
+    <div className="flex flex-col justify-between h-screen w-52 bg-white border border-gray-300">
         {/* Upper Sidebar */}
         <div>
             <img src={Logo} alt="Longshot AI logo" className="p-2" />
@@ -60,9 +60,9 @@ function Sidebar() {
         <div>
             <div className="bg-cyan-100 p-3 flex flex-col rounded-t-md border border-cyan-200">
                 <div className="flex items-center">
-                    <span className="bg-purple-800 text-white text-xs px-2 py-1.5 m-2 rounded-full">ks</span>
+                    <span className="bg-purple-800 text-white text-xs py-2 px-1.5 m-2 rounded-full">Cm</span>
                     <div className='flex flex-col'>
-                    <span className="text-xs text-slate-800">kritikalpa.saha</span>
+                    <span className="text-xs text-slate-800">Chandan.Mishra</span>
                     <span className="text-gray-500" style={{fontSize: 11}}>Credits used:313.2</span>
                     </div>
                 </div>
