@@ -4,28 +4,49 @@ import CircleIcon from '@mui/icons-material/Circle';
 import Intent from '../../utils/intentMap';
 import getKdInfo from '../../utils/kdMap';
 
-const Table = ({data, setCheckedData}) => {
-  const [isChecked, setIsChecked] = useState(false);
-  
+const Table = ({ data, setCheckedData }) => {
+  const [checkedItems, setCheckedItems] = useState([]);
+
   const handleCheckboxChange = (event, item) => {
-    setIsChecked(event.target.checked);
+    const isChecked = event.target.checked;
+
+    if (isChecked) {
+      setCheckedItems([item]);
+    } else {
+      setCheckedItems([]);
+    }
+
     setCheckedData(item);
+  };
+
+  const isItemChecked = (item) => {
+    return checkedItems.some((checkedItem) => checkedItem === item);
   };
 
   return (
     <table className="text-xs">
       <thead className="bg-gray-200 text-gray-500 ">
         <tr className="h-10">
-          <th className="w-[5%] text-center border border-gray-400" >
-            <input type="checkbox" checked={isChecked} />
+          <th className="w-[5%] text-center border border-gray-400">
+            <input type="checkbox" checked={checkedItems.length > 0} />
           </th>
           <th className="w-[25%] text-left border border-gray-400 pl-6">Keyword</th>
           <th className="w-[10%] text-left border border-gray-400 pl-2">Intent</th>
-          <th className="w-[10%] text-left bg-gray-300 border border-gray-400 pl-4">Volume<SortIcon style={{ fontSize: 14 }} /></th>
-          <th className="w-[10%] text-left border border-gray-400 pl-2">KD %<SortIcon style={{ fontSize: 14 }} /></th>
-          <th className="w-[10%] text-left border border-gray-400 pl-2">CPC (USD)<SortIcon style={{ fontSize: 14 }} /></th>
-          <th className="w-[8%] text-left border border-gray-400 pl-2">Com.<SortIcon style={{ fontSize: 14 }} /></th>
-          <th className="w-[10%] text-left border border-gray-400 pl-2">Results<SortIcon style={{ fontSize: 14 }} /></th>
+          <th className="w-[10%] text-left bg-gray-300 border border-gray-400 pl-4">
+            Volume<SortIcon style={{ fontSize: 14 }} />
+          </th>
+          <th className="w-[10%] text-left border border-gray-400 pl-2">
+            KD %<SortIcon style={{ fontSize: 14 }} />
+          </th>
+          <th className="w-[10%] text-left border border-gray-400 pl-2">
+            CPC (USD)<SortIcon style={{ fontSize: 14 }} />
+          </th>
+          <th className="w-[8%] text-left border border-gray-400 pl-2">
+            Com.<SortIcon style={{ fontSize: 14 }} />
+          </th>
+          <th className="w-[10%] text-left border border-gray-400 pl-2">
+            Results<SortIcon style={{ fontSize: 14 }} />
+          </th>
         </tr>
       </thead>
 
@@ -33,11 +54,15 @@ const Table = ({data, setCheckedData}) => {
         {data.map((item) => (
           <tr className="h-12">
             <td className="w-[5%] whitespace-nowrap text-center">
-              <input type="checkbox" onChange={(event) => handleCheckboxChange(event, item)} />
+              <input
+                type="checkbox"
+                checked={isItemChecked(item)}
+                onChange={(event) => handleCheckboxChange(event, item)}
+              />
             </td>
             <td className="pl-1 w-[25%] whitespace-nowrap">{item[0]}</td>
             <td className="pl-2 w-[10%] whitespace-nowrap">
-                <Intent intent = {item[2]} length="1" />
+              <Intent intent={item[2]} length="1" />
             </td>
             <td className="pl-2 w-[10%] whitespace-nowrap">{item[1]}</td>
             <td className="pl-2 w-[10%] whitespace-nowrap">
